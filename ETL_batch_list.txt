@@ -1,0 +1,257 @@
+##### Batch list : ${MY_HOME}/scripts/ETL_batch_list.txt 
+##### - to be called by ${MY_HOME}/scripts/DSjob_run_batch_*.sh
+# anything starting with # will be excluded by the script
+##### CDR_RECON     ###############################################################################
+#
+CDR_RECON|CDRGlossCore   |seq_CDRRecon_CDRGlossCore    |jb_CDR_CORE_GLOSS_Ext
+CDR_RECON|GlossCore      |seq_CDRRecon_GlossCore       |jb_GLOSS_CORE_Ext
+#						               
+CDR_RECON|AnvilCore      |seq_CDRRecon_AnvilCore       |jb_ANVIL_CORE_Ext
+CDR_RECON|CDRAnvilCore   |seq_CDRRecon_CDRAnvilCore    |jb_CDR_CORE_ANVIL_Ext
+#						               
+CDR_RECON|CDRGBCore      |seq_CDRRecon_CDRGBCore       |jb_CDR_CORE_GB_Ext
+CDR_RECON|GBCore         |seq_CDRRecon_GBCore          |jb_GB_CORE_Ext
+#						               
+CDR_RECON|ADPUSCore      |seq_CDRRecon_AdpusCore       |jb_ADPUS_CORE_Ext
+CDR_RECON|CDRADPUSCore   |seq_CDRRecon_CDRAdpus_Core   |jb_CDR_CORE_ADP_US_Ext
+#						               
+CDR_RECON|CDRADPCACore   |seq_CDRRecon_CDRAdpca_Core   |jb_CDR_CORE_ADP_CA_Ext
+CDR_RECON|ADPCACore      |seq_CDRRecon_AdpcaCore       |jb_ADPCA_CORE_Ext
+#						               
+CDR_RECON|MONACOCore     |seq_CDRRecon_MONACOCore      |jb_MONACO_CORE_Ext
+CDR_RECON|CDRMONACOCore  |seq_CDRRecon_CDRMONACOCore   |jb_CDR_CORE_MONACO_Ext
+#						               
+CDR_RECON|CICore         |seq_CDRRecon_CICore          |jb_CI_CORE_Ext
+CDR_RECON|CDRCICore      |seq_CDRRecon_CDRCICore       |jb_CDR_CORE_CI_Ext
+#						               
+CDR_RECON|RITorCore      |seq_CDRRecon_RITorCore       |jb_RI_CORE_Tor_Ext
+CDR_RECON|CDRRITorCore   |seq_CDRRecon_CDRRITorCore    |jb_CDR_CORE_RI_Tor_Ext
+#						               
+CDR_RECON|RILonCore      |seq_CDRRecon_RICore          |jb_RI_CORE_Ext
+CDR_RECON|CDRRILonCore   |seq_CDRRecon_CDRRICore       |jb_CDR_CORE_RI_Ext
+#						               
+CDR_RECON|CDROPICSPMCore |seq_CDRRecon_CDROPICSPMCore  |jb_CDR_CORE_OPICS_PM_Ext
+CDR_RECON|OPICSPMCore    |seq_CDRRecon_OPICSPMCore     |jb_OPICS_PM_CORE_Ext
+#						               
+CDR_RECON|CDROPICSFICore |seq_CDRRecon_CDROPICSFICore  |jb_CDR_CORE_OPICS_FI_Ext
+CDR_RECON|OPICSFICore    |seq_CDRRecon_OPICSFICore     |jb_OPICS_FI_CORE_Ext
+#						               
+CDR_RECON|CDRICICore     |seq_CDRRecon_CDRICICore      |jb_CDR_CORE_ICI_Ext
+CDR_RECON|ICICore        |seq_CDRRecon_ICICore         |jb_ICI_CORE_Ext
+#						               
+CDR_RECON|CDRRNOLANCore  |seq_CDRRecon_CDRRNOLANCore   |jb_CDR_CORE_RNOLAN_Ext
+CDR_RECON|RNOLANCore     |seq_CDRRecon_RNOLANCore      |jb_RNOLAN_CORE_Ext
+#	                                                       
+CDR_RECON|CDRNADBCore    |seq_CDRRecon_CDRNADBCore     |jb_CDR_CORE_NADB_Ext
+CDR_RECON|NADBCore       |seq_CDRRecon_NADBCore        |jb_NADB_CORE_Ext
+#	                                                       
+CDR_RECON|CDRRIMMSCore   |seq_CDRRecon_CDRRIMMSCore    |jb_CDR_CORE_RIMMS_Ext
+CDR_RECON|RIMMSCore      |seq_CDRRecon_RIMMSCore       |jb_RIMMS_CORE_Ext
+#	                                                       
+CDR_RECON|CDREBSLDNCore  |seq_CDRRecon_CDREBSLDNCore   |jb_CDR_CORE_EBSLDN_Ext
+CDR_RECON|EBSLDNCore     |seq_CDRRecon_EBSLDNCore      |jb_EBSLDN_CORE_Ext
+#	                                                       
+CDR_RECON|CDRCCMSCore    |seq_CDRRecon_CDRCCMSCore     |jb_CDR_CORE_CCMS_Ext
+CDR_RECON|CCMSCore       |seq_CDRRecon_CCMSCore        |jb_CCMS_CORE_Ext
+#	                                                       
+CDR_RECON|CDRBATSCore    |seq_CDRRecon_CDRBATSCore     |jb_CDR_CORE_BATS_Ext
+CDR_RECON|BATSCore       |seq_CDRRecon_BATSCore        |jb_BATS_CORE_Ext
+#	                                                       
+CDR_RECON|CDRGBOISubA    |seq_CDRRecon_CDRGBOISubA     |jb_CDR_SUBA_GBOI_Ext
+CDR_RECON|GBOISubA       |seq_CDRRecon_GBOISubA        |jb_GBOI_SUBA_Ext
+#	                                                       
+CDR_RECON|CDRGBOIClient  |seq_CDRRecon_CDRGBOIClient   |jb_CDR_CLNT_GBOI_Ext
+CDR_RECON|GBOIClient     |seq_CDRRecon_GBOIClient      |jb_GBOI_CLNT_Ext
+#	                                                       
+CDR_RECON|CDRRIBSCore    |seq_CDRRecon_CDRRIBSCore     |jb_CDR_CORE_RIBS_Ext
+CDR_RECON|RIBSCore       |seq_CDRRecon_RIBSCore        |jb_RIBS_CORE_Ext
+#	                                                       
+CDR_RECON|CDROPENLINKCore|seq_CDRRecon_CDROPENLINKCore |jb_CDR_CORE_OPENLINK_Ext
+CDR_RECON|OPENLINKCore   |seq_CDRRecon_OPENLINKCore    |jb_OPENLINK_CORE_Ext
+#	                                                       
+#CDR_RECON|AnvilArr      |seq_CDRRecon_AnvilArr        |jb_ANVIL_ARR_Ext
+#CDR_RECON|CDRAnvilArr   |seq_CDRRecon_CDRAnvilArr     |jb_CDR_ARR_ANVIL_Ext
+#CDR_RECON|CDRGlossArr   |seq_CDRRecon_CDRGlossArr     |jb_CDR_ARR_GLOSS_Ext
+#CDR_RECON|GlossArr      |seq_CDRRecon_GlossArr        |jb_GLOSS_ARR_Ext
+CDR_RECON|CDRGBArr      |seq_CDRRecon_CDRGBArr        |jb_CDR_ARR_GB_Ext
+CDR_RECON|GBArr         |seq_CDRRecon_GBArr           |jb_GB_ARR_Ext
+#						                                   
+##### BDR_RECON     ###################################                            ############################################
+#						                                   
+#BDR_RECON|RIMMSEBS      |seq_BDRRecon_RIMMSEBS        |jb_RIMMSEBS_Ext            
+#BDR_RECON|BDRRIMMSEBS   |seq_BDRRecon_BDRRIMMSEBS     |jb_BDR_RIMMSEBS_Ext        
+#BDR_RECON|RIMMSNY       |seq_BDRRecon_RIMMSNY         |jb_RIMMSNY_Ext             
+#BDR_RECON|BDRRIMMSNY    |seq_BDRRecon_BDRRIMMSNY      |jb_BDR_RIMMSNY_Ext         
+##						                                   
+#BDR_RECON|RIMMSLON      |seq_BDRRecon_RIMMSLON        |jb_RIMMSLON_Ext            
+#BDR_RECON|BDRRIMMSLON   |seq_BDRRecon_BDRRIMMSLON     |jb_BDR_RIMMSLON_Ext        
+#BDR_RECON|RIMMSTOR      |seq_BDRRecon_RIMMSTOR        |jb_RIMMSTOR_Ext            
+#BDR_RECON|BDRRIMMSTOR   |seq_BDRRecon_BDRRIMMSTOR     |jb_BDR_RIMMSTOR_Ext        
+##						                                   
+#BDR_RECON|SLIM          |seq_BDRRecon_SLIM            |jb_SLIM_Ext                
+#BDR_RECON|BDRSLIM       |seq_BDRRecon_BDRSLIM         |jb_BDR_SLIM_Ext            
+##						                                   
+#BDR_RECON|OPENLINK      |seq_BDRRecon_OPENLINK        |jb_OPENLINK_Ext            
+#BDR_RECON|BDROPENLINK   |seq_BDRRecon_BDROPENLINK     |jb_BDR_OPENLINK_Ext        
+##						                                   
+#BDR_RECON|FIDESSA_LDN   | seq_BDRRecon_FIDESSA_LDN    |jb_FIDESSA_LDN_Ext          
+#BDR_RECON|BDRFIDESSA_LDN| seq_BDRRecon_BDRFIDESSA_LDN |jb_BDR_FIDESSA_LDN_Ext      
+##						                                   
+#BDR_RECON|BDRRITor      |seq_BDRRecon_BDRRITor        |jb_BDR_RITOR_Ext           
+#BDR_RECON|BDRRILon      |seq_BDRRecon_BDRRILon        |jb_BDR_RILON_Ext           
+#BDR_RECON|BDRCI         |seq_BDRRecon_BDRCI           |jb_BDR_BOOKSCI_Ext         
+#BDR_RECON|CI            |seq_BDRRecon_CI              |jb_CIBOOKS_Ext             
+##						                                   
+#BDR_RECON|ELTA          |seq_BDRRecon_ELTA            |jb_ELTABOOKS_Ext           
+#BDR_RECON|BDRELTA       |seq_BDRRecon_BDRELTA         |jb_BDR_BOOKSELTA_Ext       
+##						                                   
+#BDR_RECON|BDRFIDESSA_US |seq_BDRRecon_BDRFIDESSA_US   |jb_BDR_FIDESSA_US_Ext      
+#BDR_RECON|FIDESSA_US    |seq_BDRRecon_FIDESSA_US      |jb_FIDESSA_US_Ext          
+##						                                   
+#BDR_RECON|BDRMUREXFXO   |seq_BDRRecon_BDRMUREXFXO     |jb_BDR_MUREXFXO_Ext        
+#BDR_RECON|MUREXFXO      |seq_BDRRecon_MUREXFXO        |jb_MUREXFXO_Ext            
+##						                                   
+#BDR_RECON|FIDESSA_CA    |seq_BDRRecon_FIDESSA_CA      |jb_FIDESSA_CA_Ext          
+#BDR_RECON|BDRFIDESSA_CA |seq_BDRRecon_BDRFIDESSA_CA   |jb_BDR_FIDESSA_CA_Ext      
+##						                                   
+#BDR_RECON|BDRTOMSRBCN   |seq_BDRRecon_BDRTOMSRBCN     |jb_BDR_TOMSRBCN_Ext        
+#BDR_RECON|TOMSRBCN      |seq_BDRRecon_TOMSRBCN        |jb_TOMSRBCN_Ext            
+#BDR_RECON|BDRTOMSRBCE   |seq_BDRRecon_BDRTOMSRBCE     |jb_BDR_TOMSRBCE_Ext        
+#BDR_RECON|TOMSRBCE      |seq_BDRRecon_TOMSRBCE        |jb_TOMSRBCE_Ext            
+##						                                   
+#BDR_RECON|BDRBATS       |seq_BDRRecon_BDRBATS         |jb_BDR_BATS_Ext            
+#BDR_RECON|BATS          |seq_BDRRecon_BATS            |jb_BATS_Ext                
+#
+##### SLIM     ###############################################################################
+# 1) Misc batches to start
+SLIM_IN|ETL_SLIM_ANVIL_REC      |3443|seq_TOR_Recon_SLIM_To_ANVIL
+SLIM_IN|ETL_SLIM_ANVIL_REC      |4141|seq_TOR_SLIM_BondPosition_Extract
+SLIM_IN|ETL_SLIM_NOSTRO_REC     |3445|seq_TOR_Recon_NOSTRO
+#
+SLIM_IN|ETL_SLIM_OPICS_REC      |3446|seq_TOR_SLIM_To_OPICS_Recon
+SLIM_IN|ETL_SLIM_REC            |3447|seq_TOR_SLIM_OpenTrades_Reconciliation
+SLIM_IN|ETL_SLIM_RIMMS_REC      |3448|seq_Recon_SLIM_To_RIMMSFX
+SLIM_IN|ETL_TORINF_REC          |3449|seq_Infinity_Reconcilation
+SLIM_IN|ETL_SLIM_CPTY_REC       |3444|Seq_TOR_SLIM_COUNTERPARTY_Recon
+#
+SLIM_IN|ETL_LDN_RECON_EXTRACTS_2|3474|seq_LON_SLIM_Detailed_LnD_Swap_Contract
+SLIM_IN|ETL_LDN_RECON_EXTRACTS_2|3475|seq_LON_SLIM_FX_Forward_Revaluation_Postings
+SLIM_IN|ETL_LDN_RECON_EXTRACTS_2|3484|seq_LON_SLIM_LnD_Accrual_Extract
+#
+SLIM_IN|ETL_LDN_RECON_EXTRACTS_3|3480|seq_LON_SLIM_PnLDetail_Extract
+# Unused:
+# SLIM_IN|ETL_eDR_EXTRACTS|4406|Seq_eDR_MonthlyTrade_Extract
+# SLIM_IN|ETL_eDR_EXTRACTS|4408|Seq_eDR_DailyTrade_Extract
+# SLIM_IN|ETL_eDR_EXTRACTS|4581|Seq_OTIS_DailyTrade_Extract
+#
+# 2) Main group of ETL_LDN_RECON_EXTRACTS
+#
+SLIM_IN|ETL_LDN_RECON_EXTRACTS|3460|seq_LON_SLIM_Felix_Reconciliation
+SLIM_IN|ETL_LDN_RECON_EXTRACTS|3461|seq_LON_SLIM_ISCA_Reconciliation
+SLIM_IN|ETL_LDN_RECON_EXTRACTS|3462|seq_LON_SLIM_DailyCash_Extract
+SLIM_IN|ETL_LDN_RECON_EXTRACTS|3466|seq_LON_SLIM_RNVariationMargin_Extract
+SLIM_IN|ETL_LDN_RECON_EXTRACTS|3470|seq_LON_SLIM_Balance_Summary_Extract
+SLIM_IN|ETL_LDN_RECON_EXTRACTS|3471|seq_LON_SLIM_ETD_NewTrades_Extract
+SLIM_IN|ETL_LDN_RECON_EXTRACTS|3472|seq_LON_SLIM_ETD_PendingTrades_Extract
+SLIM_IN|ETL_LDN_RECON_EXTRACTS|3473|seq_LON_SLIM_ETD_Positions_Extract
+SLIM_IN|ETL_LDN_RECON_EXTRACTS|3476|seq_LON_SLIM_DailyFXPosition_Extract
+SLIM_IN|ETL_LDN_RECON_EXTRACTS|3477|seq_LON_SLIM_AsiaPac_FX_Extract
+SLIM_IN|ETL_LDN_RECON_EXTRACTS|3478|seq_LON_SLIM_Local_versus_HeadOffice_Rates_Extract
+SLIM_IN|ETL_LDN_RECON_EXTRACTS|3479|Seq_LON_SLIM_Repatriated_PnL_Extract
+SLIM_IN|ETL_LDN_RECON_EXTRACTS|3480|seq_LON_SLIM_PnLDetail_Extract
+SLIM_IN|ETL_LDN_RECON_EXTRACTS|3481|seq_LON_SLIM_PnLSummary_Extract
+SLIM_IN|ETL_LDN_RECON_EXTRACTS|3482|seq_LON_SLIM_RIMMS_Bridge_Report
+SLIM_IN|ETL_LDN_RECON_EXTRACTS|3483|seq_LON_SLIM_TradesBalance_eGL_Account_Extract
+SLIM_IN|ETL_LDN_RECON_EXTRACTS|3485|seq_LON_SLIM_RAS_PL_EOD_Extract
+SLIM_IN|ETL_LDN_RECON_EXTRACTS|3486|seq_LON_SLIM_RAS_PL_Intraday_Extract
+SLIM_IN|ETL_LDN_RECON_EXTRACTS|3487|seq_LON_SLIM_FakBalWithCPTY_Extract
+SLIM_IN|ETL_LDN_RECON_EXTRACTS|3488|seq_LON_SLIM_FakBalNoCPTY_Extract
+SLIM_IN|ETL_LDN_RECON_EXTRACTS|3489|seq_LON_SLIM_ETD_Summary_Extract
+SLIM_IN|ETL_LDN_RECON_EXTRACTS|3490|seq_LON_SLIM_OpenDeriv_Reconciliation
+SLIM_IN|ETL_LDN_RECON_EXTRACTS|4201|seq_LON_SLIM_VCON_Extract
+SLIM_IN|ETL_LDN_RECON_EXTRACTS|4202|seq_LON_SLIM_STV_Felix_Extract
+SLIM_IN|ETL_LDN_RECON_EXTRACTS|4203|seq_LON_SLIM_STV_Felix_Inf_Extract
+SLIM_IN|ETL_LDN_RECON_EXTRACTS|4204|seq_LON_SLIM_STV_Felix_Slim_Extract
+SLIM_IN|ETL_LDN_RECON_EXTRACTS|4236|Seq_LON_SLIM_Gloss_EQBookBalancing_Extract
+SLIM_IN|ETL_LDN_RECON_EXTRACTS|4237|Seq_LON_SLIM_RIMMS_ISCA_Recon_SLIMExtract
+SLIM_IN|ETL_LDN_RECON_EXTRACTS|4238|Seq_LON_SLIM_RIMMS_ISCA_Recon_SLIMBBExtract
+SLIM_IN|ETL_LDN_RECON_EXTRACTS|4239|Seq_LON_SLIM_RIMMS_ISCA_Recon_RIMMSExtract
+SLIM_IN|ETL_LDN_RECON_EXTRACTS|4240|Seq_LON_SLIM_RIMMS_ISCA_Recon_GlossExtract
+SLIM_IN|ETL_LDN_RECON_EXTRACTS|4241|Seq_LON_SLIM_GlossEQ_Recon_GlossExtract
+SLIM_IN|ETL_LDN_RECON_EXTRACTS|4242|Seq_LON_SLIM_Gloss_Report_Extract
+SLIM_IN|ETL_LDN_RECON_EXTRACTS|4361|seq_LON_SLIM_Felix_EBA_Rec
+SLIM_IN|ETL_LDN_RECON_EXTRACTS|4361|seq_LON_SLIM_Felix_Latest_Trades_Rec
+#
+# ETL_LDN_RECON_EXTRACTS|3459|seq_LON_SLIM_OpenTrades_Reconciliation
+#
+# 3) UKRR group 
+#
+SLIM_OUT|UKRR_EXTRACT          |3960|seq_LON_SLIM_Acc_Balance_me                       
+SLIM_OUT|UKRR_EXTRACT          |3962|seq_LON_SLIM_Book_static                          
+SLIM_OUT|UKRR_EXTRACT          |3963|seq_LON_SLIM_fxrevaluations                       
+SLIM_OUT|UKRR_EXTRACT          |3964|seq_LON_SLIM_fx_tradestatic                       
+SLIM_OUT|UKRR_EXTRACT          |3965|seq_LON_SLIM_gl_account                           
+SLIM_OUT|UKRR_EXTRACT          |3966|seq_LON_SLIM_irl_felixvaluations                  
+SLIM_OUT|UKRR_EXTRACT          |3967|seq_LON_SLIM_irl_tradestaticupdates               
+SLIM_OUT|UKRR_EXTRACT          |3968|seq_LON_SLIM_mm_contract_accrual                  
+SLIM_OUT|UKRR_EXTRACT          |3969|seq_LON_SLIM_mm_contract_static                   
+SLIM_OUT|UKRR_EXTRACT          |3970|seq_LON_SLIM_summary_balances                     
+#
+# 4) Any long running ones - leave until last 
+#
+SLIM_OUT|ETL_INF_LONINF_OPENTRADES_REC|3458|seq_LON_Infinity_OpenTrades_Reconcilation
+#
+# 5) INbound jobs -  run via poller for now? Though some have now migrated to Tidal - LON 
+#
+#SLIM_IN|INCREMENTAL_ETL_PROCESS|3634|Seq_TOR_slim_to_infinity_book_refresh
+#SLIM_IN|INCREMENTAL_ETL_PROCESS|3639|Seq_TOR_Settlements_Load
+#SLIM_IN|INCREMENTAL_ETL_PROCESS|3640|Seq_TOR_DLY_ETD_INSTRUMENT
+##SLIM_IN|INCREMENTAL_ETL_PROCESS|3641|(Mutiple)
+#SLIM_IN|INCREMENTAL_ETL_PROCESS|3635|Seq_LON_slim_to_infinity_book_refresh
+##SLIM_IN|INCREMENTAL_ETL_PROCESS|3638|(Mutiple)
+#SLIM_IN|LDN_INCREMENTAL_ETL_PROCESS|4551|Seq_LON_slim_to_infinity_book_refresh
+#SLIM_IN|LDN_INCREMENTAL_ETL_PROCESS|4552|Seq_LON_Book_Portfolio_Refresh
+#SLIM_IN|LDN_INCREMENTAL_ETL_PROCESS|4553|Seq_LON_DLY_TRADSALE
+#SLIM_IN|LDN_INCREMENTAL_ETL_PROCESS|4554|Seq_LON_DLY_ETD
+#SLIM_IN|LDN_INCREMENTAL_ETL_PROCESS|4555|Seq_LON_DLY_FX
+#SLIM_IN|LDN_INCREMENTAL_ETL_PROCESS|4556|Seq_LON_DLY_LD_Mortgages
+#SLIM_IN|LDN_INCREMENTAL_ETL_PROCESS|4557|Seq_LON_DLY_OTC
+#SLIM_IN|LDN_INCREMENTAL_ETL_PROCESS|4558|Seq_LON_DLY_Cash
+#SLIM_IN|LDN_INCREMENTAL_ETL_PROCESS|4559|Seq_LON_DLY_SWAP_FRA
+#SLIM_IN|LDN_INCREMENTAL_ETL_PROCESS|4560|Seq_LON_Settlements_Load
+#
+#
+# My first attempt - but need correct batch / stage names rather.
+#
+#SLIM_OUT|EXTRACTS_1|3458|seq_LON_Infinity_OpenTrades_Reconcilation     
+#SLIM_OUT|EXTRACTS_1|3459|seq_LON_SLIM_OpenTrades_Reconciliation        
+#SLIM_OUT|EXTRACTS_1|3460|seq_LON_SLIM_Felix_Reconciliation             
+#SLIM_OUT|EXTRACTS_1|3461|seq_LON_SLIM_ISCA_Reconciliation              
+#SLIM_OUT|EXTRACTS_1|3462|seq_LON_SLIM_DailyCash_Extract                
+#SLIM_OUT|EXTRACTS_2|3466|seq_LON_SLIM_RNVariationMargin_Extract        
+#SLIM_OUT|EXTRACTS_2|3471|seq_LON_SLIM_ETD_NewTrades_Extract            
+#SLIM_OUT|EXTRACTS_2|3472|seq_LON_SLIM_ETD_PendingTrades_Extract        
+#SLIM_OUT|EXTRACTS_2|3473|seq_LON_SLIM_ETD_Positions_Extract            
+#SLIM_OUT|EXTRACTS_1|3476|seq_LON_SLIM_DailyFXPosition_Extract          
+#SLIM_OUT|EXTRACTS_2|3479|Seq_LON_SLIM_Repatriated_PnL_Extract          
+#SLIM_OUT|EXTRACTS_3|3480|seq_LON_SLIM_PnLDetail_Extract                
+#SLIM_OUT|EXTRACTS_1|3482|seq_LON_SLIM_RIMMS_Bridge_Report              
+#SLIM_OUT|EXTRACTS_2|3483|seq_LON_SLIM_TradesBalance_eGL_Account_Extract
+#SLIM_OUT|EXTRACTS_2|3485|seq_LON_SLIM_RAS_PL_EOD_Extract               
+#SLIM_OUT|EXTRACTS_2|3486|seq_LON_SLIM_RAS_PL_Intraday_Extract          
+#SLIM_OUT|EXTRACTS_1|3487|seq_LON_SLIM_FakBalWithCPTY_Extract           
+#SLIM_OUT|EXTRACTS_1|3488|seq_LON_SLIM_FakBalNoCPTY_Extract             
+#SLIM_OUT|EXTRACTS_2|3489|seq_LON_SLIM_ETD_Summary_Extract              
+#SLIM_OUT|EXTRACTS_2|3490|seq_LON_SLIM_OpenDeriv_Reconciliation         
+#SLIM_OUT|EXTRACTS_2|4201|seq_LON_SLIM_VCON_Extract                     
+#SLIM_OUT|EXTRACTS_2|4236|Seq_LON_SLIM_Gloss_EQBookBalancing_Extract    
+#SLIM_OUT|EXTRACTS_2|4237|Seq_LON_SLIM_RIMMS_ISCA_Recon_SLIMExtract     
+#SLIM_OUT|EXTRACTS_1|4238|Seq_LON_SLIM_RIMMS_ISCA_Recon_SLIMBBExtract   
+#SLIM_OUT|EXTRACTS_1|4239|Seq_LON_SLIM_RIMMS_ISCA_Recon_RIMMSExtract    
+#SLIM_OUT|EXTRACTS_2|4240|Seq_LON_SLIM_RIMMS_ISCA_Recon_GlossExtract    
+#SLIM_OUT|EXTRACTS_1|4241|Seq_LON_SLIM_GlossEQ_Recon_GlossExtract       
+#SLIM_OUT|EXTRACTS_2|4242|Seq_LON_SLIM_Gloss_Report_Extract             
+#SLIM_OUT|EXTRACTS_3|4361|seq_LON_SLIM_Felix_EBA_Rec                    
+#SLIM_OUT|EXTRACTS_3|4361|seq_LON_SLIM_Felix_Latest_Trades_Rec          
+#
+#
