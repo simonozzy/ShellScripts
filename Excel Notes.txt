@@ -1,0 +1,223 @@
+
+############################################################
+# Part #1 Excel formulae notes :
+
+# Copied from D:\Simon\MMC\Misc\Work\Notes\Notes.txt
+
+### NEW SECTION 2021 - merge to other versions
+
+Prefix before (FIRST instance of) a seperator char (eg. "_") :
+=LEFT(A4,FIND("_",A4)-1)
+
+Suffix after (FIRST instance of) a seperator char (eg. "_"):
+=RIGHT(A3,LEN(A3)-FIND("_",A3)) 
+
+Suffix after (LAST instance of) a seperator char (eg. "_"):
+=TRIM(RIGHT(SUBSTITUTE(A4,"_",REPT(" ",100)),100))
+
+##
+
+=XLOOKUP(F751,$F$98:$F$114,$G$98:$G$114,"[NONE]",1,1)
+- v useful that return_array (2nd)  can be to the left of lookup_array, unlike VLOOKUP!
+- "[NONE]",1,1 are good defaults here. 
+- First 1:  match mode = 1 (exact) / OR 2 allows wildcard ? or * matches in the lookup_array (first)  
+- 2nd 1:  search mode = 1 -> forwards in lookup_array not backwards (upwards) / not sure how useful that may be.
+ 
+##
+
+Column grouping:
+select column A, and then hold Shift + Alt + Right arrow 
+https://www.educba.com/grouping-columns-in-excel/
+
+###  Carriage returns in formulae:
+Add a carriage return in a formula: & CHAR(10)
+Search / replace for carriage return: CTRL + J
+BUT can't get this working in the SEARCH function eg. =SEARCH("_ID"&CHAR(10),G3)
+
+### array formulae
+https://support.microsoft.com/en-us/office/guidelines-and-examples-of-array-formulas-7d94a64e-3fF3-4686-9372-ecfd5caa57c7
+ 
+An array formula is a formula that can perform multiple calculations on one or more items in an array. You can think of an array as a row or column of values, or a combination of rows and columns of values. Array formulas can return either multiple results, or a single result.
+
+Beginning with the September 2018 update for Microsoft 365, any formula that can return multiple results will automatically spill them either down, or across into neighboring cells. This change in behavior is also accompanied by several new dynamic array functions. Dynamic array formulas, whether they’re using existing functions or the dynamic array functions, only need to be input into a single cell, then confirmed by pressing Enter. Earlier, legacy array formulas require first selecting the entire output range, then confirming the formula with Ctrl+Shift+Enter. They’re commonly referred to as CSE formulas.
+
+=IFERROR(INDEX($D$3:$D$1550, SMALL(IF($H3=$F$3:$F$1550, ROW($F$3:$F$1550)-MIN(ROW($F$3:$F$1550))+1, ""), K$2)),0)
+
+## How to get-a-list-of-all-worksheet-names-in-an-excel-workbook
+
+Formulas -> Names -> ListSHeets :
+=REPLACE(GET.WORKBOOK(1),1,FIND("]",GET.WORKBOOK(1)),"")
+- now saved on ING - all Workbooks?
+
+Then A1:A10 =1..10 and 
+B1..B10 = =INDEX(ListSheets,A1)
+https://www.datanumen.com/blogs/3-quick-ways-to-get-a-list-of-all-worksheet-names-in-an-excel-workbook/
+
+https://support.microsoft.com/en-us/office/create-custom-functions-in-excel-2f06c10b-3622-40d6-a1b2-b6748ae8231f?ui=en-us&rs=en-us&ad=us
+
+### SQL Build 1 - Union of table counts grouped by a set value in $N$1
+ - that can also be like: to_char(AVAIL_FROM_TMS,'YYYY') ||'-'|| to_char(AVAIL_FROM_TMS,'WW') 
+
+=CONCATENATE("UNION ALL SELECT '",E120,"' as SCHEMA_NAME, '",F120,"'",REPT(" ",20-LEN(F120))," as TABLE_NAME, '", SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE($N$1,"||'-'||","#"),"'YYYY-MM-DD'",""),"(","#"),",","#"),")",""),"' as GROUP_NAME, ",$N$1," as GROUP_VALUE", ", count(*) as ROW_COUNT FROM ",E120,".",F120,REPT(" ",20-LEN(F120))," GROUP BY  ",$N$1)
+
+### SQL Build 2 - Union of table SUM(CASE( counts defined in $0$1
+ - $0$1 eg.: 'as TABLE_NAME  , SUM(CASE WHEN  to_char(AVAIL_FROM_TMS,'YYYY-MM-DD') < '2022-06-22'       AND  .. '
+ 
+ 
+### SQL Build 3 - constraint DDL with line breaks :
+
+ =CONCATENATE(
+CHAR(10),",    CONSTRAINT FEC_",F97,"_LND_PK PRIMARY KEY (",F97,"_ID, EXTRACT_DT)
+USING INDEX ( CREATE INDEX DM_COMPL.FEC_",F97,"_LND_",F97,"_ID_IDX 
+  ON DM_COMPL.FEC_",F97,"_LND (",F97,"_ID,EXTRACT_DT) )
+ )
+PCTFREE 0 ;
+GRANT ALL ON DM_COMPL.FEC_",F97,"_LND TO PUBLIC ;
+")
+ 
+=CONCATENATE("UNION ALL SELECT '",E97,"' as SCHEMA_NAME, '",F97,"'",REPT(" ",20-LEN(F97)),$O$1,E97,".",F97)
+
+#### Run a macro from a Hyperlinked cell that detectc when the cell area is clicked
+
+Private Sub Worksheet_FollowHyperlink(ByVal Target As Hyperlink)
+    'Check if the Target Address is same as you have given
+    'In the above example i have taken D1 Cell, so I am
+         
+    If Target.Range.Address = "$D$1" Then
+        'Call the function or Macro which you have written or recorded.
+     Select Case MsgBox("Rule rows will now be generated. Make sure to save before running. Then if not happy with results close without saving and re-open unsaved version!", vbOKCancel, "Confirm if you want generator macro to run?")
+    Case vbOK
+       ' MsgBox "Your Code here to be executed"
+       Call CopyData
+    Case vbCancel
+        MsgBox "Macro not run."
+      End Select
+        Exit Sub
+    End If
+End Sub
+
+
+'MsgBox (" Column to hide/unhide: " + CStr(hideValue) + " ")
+    If hideValue = "hideAll" Then
+       hideColumn = "True"
+      ' MsgBox "True"
+    ElseIf hideValue = "unHideAll" Then
+       hideColumn = "False"
+      ' MsgBox "false"
+    Else: hideColumn = "Not c.EntireColumn.Hidden"
+       MsgBox "Toggle"
+    End If
+
+##### Excel hide columns based cell value - investigate?
+https://www.excelcampus.com/vba/vba-macro-hide-columns-containing-value/
+
+
+Private Sub Worksheet_FollowHyperlink(ByVal Target As Hyperlink)
+   Select Case Target.Range.Address
+       Case "$B$4"
+         Call Hide_Columns_Containing_Value("A4")
+       Case "$B$5"
+         Call Hide_Columns_Containing_Value("A5")
+       Case "$B$6"
+         Call Hide_Columns_Containing_Value("A6")
+       Case "$B$7"
+         Call Hide_Columns_Containing_Value("A7")
+    ' If Target.Range.Address = "$B$4" Then
+     End Select
+End Sub
+
+Sub Hide_Columns_Containing_Value(hideValueCell As String)
+'Description: This macro will loop through a row and hide the column if the cell in row 1 of the column has the value of X.
+'Author: Jon Acampora, Excel Campus
+    
+Dim c As Range
+Dim hideValue, hideColumn As String
+hideValue = Range(hideValueCell).Value
+
+    For Each c In Range("C4:BZ4").Cells
+        If c.Value = hideValue Then
+            c.EntireColumn.Hidden = Not c.EntireColumn.Hidden
+            'You can change the property above to True / False to hide / unhide the columns.
+            ElseIf IsNumeric(c.Value) And hideValue = "unHideAll" Then
+              c.EntireColumn.Hidden = False
+            ElseIf IsNumeric(c.Value) And hideValue = "hideAll" Then
+              c.EntireColumn.Hidden = True
+        End If
+    Next c
+End Sub
+
+OR Array approach to get a list of columns from a cell:
+https://stackoverflow.com/questions/21268383/put-entire-column-each-value-in-column-in-an-array
+https://www.educba.com/vba-string-array/
+
+Sub Column_Hide_Cell_Value()
+    Dim k As Integer
+    For k = 6 To 11
+        If Cells(1, k).Value = "H" Then
+           Columns(k).Hidden = False
+        End If
+    Next k
+End Sub
+
+
+############## Part #2 - Older
+
+# If using conditional formatting, to have a list of values, use "Formula is" :
+= IF(D5="Manual",1,IF(D5="REMOVE",1, IF(D5="On Hold",1,0 ) ))
+
+# if doing a row by row diff and you want to check if a cell is different to the cell above,
+# do this in conditional formatting and then copy formats to all cells! +++++
+= IF(a2<>a3,1,0)
+
+# Given cell C8 which is the CURRENT day number of the month ( =TEXT(TODAY(),"dd") ), work out
+
+= IF(WEEKDAY(TODAY()-C8,2)>=6,
+         TEXT(TODAY()-C8-WEEKDAY(TODAY()-C8,2)+5,"yyyymmdd"),
+               TEXT(TODAY()-C8-0,"yyyymmdd"))
+
+# Or all in one cell / calculation:
+= IF(WEEKDAY(TODAY()-TEXT(TODAY(),"dd"),2)>=6,
+         TEXT(TODAY()-TEXT(TODAY(),"dd")-WEEKDAY(TODAY()-TEXT(TODAY(),"dd"),2)+5,"yyyymmdd"),
+               TEXT(TODAY()-TEXT(TODAY(),"dd")-0,"yyyymmdd"))
+
+reference - Status options list :
+Red:
+= IF(mid(a3,1,1)="2",1,IF(mid(a3,1,1)="6",1, IF(mid(a3,1,1)="6",1,0 ) ))
+
+Orange:
+= IF(mid(a3,1,1)="1",1,IF(mid(a3,1,1)="3",1, IF(mid(a3,1,1)="4",1,0 ) ))
+
+Green
+= IF(mid(a3,1,1)="5",1,IF(mid(a3,1,1)="8",1, IF(mid(a3,1,1)="9",1,0 ) ))
+
+#
+= IF(LEN(G4)<=F4-1,G4&REPT("#",F4-LEN(G4)-1)&"-",REPT("#",F4-1)&"-")
+
+= IF(F5>9,"+"&TEXT(C5,"000")&"-"&TEXT(D5,"000")&REPT("#",F5-3-6)&"-", REPT("+",F5-1)&"-")
+
+# Search for instances of a list of strings in cell and return a decode. Like a "case in" statement. VERY USEFUL
+
+= IF(COUNT(SEARCH({"BT","BBB"},h35)),"Landline",
+ IF(COUNT(SEARCH({"O2","TELEFONICA","PLUSNET"},h35)),"Internet",
+ IF(COUNT(SEARCH({"INTEREST ","CCC"},h35)),"INTEREST",
+ IF(COUNT(SEARCH({"CHARGE","CCC"},h35)),"CHARGES",
+ IF(COUNT(SEARCH({"TV ","CCC"},h35)),"TV",
+ IF(COUNT(SEARCH({"FT ","CCC"},h35)),"Transfer",
+ "OTHER"))))))
+
+
+# To CONCATENATE a vertical range with spacers:
+1) copy this formula text "=CONCATENATE(TRANSPOSE(B218:B222)&" OR ") " into the one below it
+2) Select the .. Portion in CONCAT(..) and press F9. which replaces the TRANSPOSE with its result
+3)  Now remove curly brackets - voila!
+http://chandoo.org/wp/2014/01/13/combine-text-values-quick-tip/
+
+
+Outlook Customizations (olkexplorer).exportedUI
+
+<mso:cmd app="olkexplorer" dt="0" slr="0" /><mso:customUI xmlns:mso="http://schemas.microsoft.com/office/2009/07/customui"><mso:ribbon><mso:qat><mso:sharedControls><mso:control idQ="mso:FilePrint" visible="false"/><mso:control idQ="mso:FileSaveAs" visible="false"/><mso:control idQ="mso:SendReceiveAll" visible="true"/><mso:control idQ="mso:UpdateFolder" visible="false"/><mso:control idQ="mso:Reply" visible="false"/><mso:control idQ="mso:ReplyAll" visible="false"/><mso:control idQ="mso:Forward" visible="false"/><mso:control idQ="mso:Delete" visible="false"/><mso:control idQ="mso:Undo" visible="false"/><mso:control idQ="mso:EmptyTrash" visible="false"/><mso:control idQ="mso:PointerModeOptions" visible="false"/><mso:control idQ="mso:FindContactCombo" visible="false"/><mso:control idQ="mso:MinimizeRibbon" visible="false"/><mso:control idQ="mso:RulesAndAlerts" visible="true"/><mso:control idQ="mso:FlagThisWeek" visible="true"/><mso:control idQ="mso:AddReminder" visible="true"/><mso:control idQ="mso:ClearFlag" visible="true"/><mso:control idQ="mso:MarkTaskComplete" visible="true"/><mso:control idQ="mso:CurrentViewSettings" visible="true"/><mso:control idQ="mso:ShowInConversations" visible="true"/><mso:control idQ="mso:ConversationsMenu" visible="true"/></mso:sharedControls></mso:qat></mso:ribbon></mso:customUI>
+
+Excel Customizations2.exportedUI
+
+<mso:cmd app="Excel" dt="1" /><mso:customUI xmlns:mso="http://schemas.microsoft.com/office/2009/07/customui"><mso:ribbon><mso:qat><mso:sharedControls><mso:control idQ="mso:FileNewDefault" visible="false" insertBeforeQ="mso:AutoSaveSwitch"/><mso:control idQ="mso:FileOpenUsingBackstage" visible="false" insertBeforeQ="mso:AutoSaveSwitch"/><mso:control idQ="mso:FileSave" visible="false" insertBeforeQ="mso:AutoSaveSwitch"/><mso:control idQ="mso:FileSendAsAttachment" visible="false" insertBeforeQ="mso:AutoSaveSwitch"/><mso:control idQ="mso:FilePrintQuick" visible="false" insertBeforeQ="mso:AutoSaveSwitch"/><mso:control idQ="mso:PrintPreviewAndPrint" visible="false" insertBeforeQ="mso:AutoSaveSwitch"/><mso:control idQ="mso:Spelling" visible="false" insertBeforeQ="mso:AutoSaveSwitch"/><mso:control idQ="mso:Undo" visible="false" insertBeforeQ="mso:AutoSaveSwitch"/><mso:control idQ="mso:Redo" visible="false" insertBeforeQ="mso:AutoSaveSwitch"/><mso:control idQ="mso:SortAscendingExcel" visible="false" insertBeforeQ="mso:AutoSaveSwitch"/><mso:control idQ="mso:SortDescendingExcel" visible="false" insertBeforeQ="mso:AutoSaveSwitch"/><mso:control idQ="mso:PointerModeOptions" visible="false" insertBeforeQ="mso:AutoSaveSwitch"/><mso:control idQ="mso:ColumnWidthAutoFit" visible="true" insertBeforeQ="mso:AutoSaveSwitch"/><mso:control idQ="mso:RowHeightAutoFit" visible="true" insertBeforeQ="mso:AutoSaveSwitch"/><mso:control idQ="mso:WrapText" visible="true" insertBeforeQ="mso:AutoSaveSwitch"/><mso:control idQ="mso:ViewFreezePanesGallery" visible="true" insertBeforeQ="mso:AutoSaveSwitch"/><mso:control idQ="mso:Filter" visible="true" insertBeforeQ="mso:AutoSaveSwitch"/><mso:control idQ="mso:SortClear" visible="true" insertBeforeQ="mso:AutoSaveSwitch"/><mso:control idQ="mso:ConditionalFormattingMenu" visible="true" insertBeforeQ="mso:AutoSaveSwitch"/><mso:control idQ="mso:DataValidation" visible="true" insertBeforeQ="mso:AutoSaveSwitch"/><mso:control idQ="mso:MinimizeRibbon" visible="true" insertBeforeQ="mso:AutoSaveSwitch"/><mso:control idQ="mso:BordersAll" visible="true" insertBeforeQ="mso:AutoSaveSwitch"/><mso:control idQ="mso:BorderThickOutside" visible="true" insertBeforeQ="mso:AutoSaveSwitch"/><mso:control idQ="mso:SortFilterMenu" visible="true" insertBeforeQ="mso:AutoSaveSwitch"/><mso:control idQ="mso:FontSizeDecrease" visible="true" insertBeforeQ="mso:AutoSaveSwitch"/><mso:control idQ="mso:FontSizeIncrease" visible="true" insertBeforeQ="mso:AutoSaveSwitch"/><mso:control idQ="mso:RowHeight" visible="true" insertBeforeQ="mso:AutoSaveSwitch"/><mso:control idQ="mso:DecimalsDecrease" visible="true" insertBeforeQ="mso:AutoSaveSwitch"/><mso:control idQ="mso:Strikethrough" visible="true" insertBeforeQ="mso:AutoSaveSwitch"/><mso:control idQ="mso:RemoveDuplicates" visible="true" insertBeforeQ="mso:AutoSaveSwitch"/><mso:control idQ="mso:ReviewNewComment" visible="true" insertBeforeQ="mso:AutoSaveSwitch"/><mso:control idQ="mso:PivotTableChangeDataSource" visible="true" insertBeforeQ="mso:AutoSaveSwitch"/><mso:control idQ="mso:AutoSaveSwitch" visible="true"/></mso:sharedControls></mso:qat><mso:tabs><mso:tab idQ="mso:TabDrawInk" visible="false"/></mso:tabs></mso:ribbon></mso:customUI>
+
