@@ -43,6 +43,22 @@ Beginning with the September 2018 update for Microsoft 365, any formula that can
 
 =IFERROR(INDEX($D$3:$D$1550, SMALL(IF($H3=$F$3:$F$1550, ROW($F$3:$F$1550)-MIN(ROW($F$3:$F$1550))+1, ""), K$2)),0)
 
+=IFERROR(INDEX($F$2:$F$555, MATCH(0, COUNTIF($G$1:G1, $F$2:$F$555), 0)),0)
+-> Ctrl+Shift+Enter for array {}, then drag down until stops giving values
+
+PK: A->F , Unique list: C->G, Sample data: B->D , New seq: D1->h1
+=IFERROR(INDEX($B$1:$B$9,   SMALL(IF($C2=$A$1:$A$9, ROW($A$1:$A$9)-MIN(ROW($A$1:$A$9))+1, ""), D$1)),0)
+=IFERROR(INDEX($D$2:$d$555, SMALL(IF($G2=$f$2:$f$555, ROW($f$2:$f$555)-MIN(ROW($f$2:$f$555))+1, ""), h$1)),0)
+
+PK: A->F , Unique list: C->H, Sample data: B->D , New seq: D1->K2
+=IFERROR(INDEX($D$3:$D$556, SMALL(IF($H3=$F$3:$F$556, ROW($F$3:$F$556)-MIN(ROW($F$3:$F$556))+1, ""), K$2)),"")
+=IFERROR(INDEX($D$3:$D$556, SMALL(IF($H3=$F$3:$F$556, ROW($F$3:$F$556)-MIN(ROW($F$3:$F$556))+1, ""), K$2)),0)
+-> Ctrl+Shift+Enter for array {}, then drag down until stops giving values
+
+
+Merge columns (Filtered) inserting a separator:
+=TEXTJOIN(" | ";1; FILTER(K3:T3; K3:T3 <> 0))
+
 ## How to get-a-list-of-all-worksheet-names-in-an-excel-workbook
 
 Formulas -> Names -> ListSHeets :
@@ -76,6 +92,7 @@ GRANT ALL ON DM_COMPL.FEC_",F97,"_LND TO PUBLIC ;
 ")
  
 =CONCATENATE("UNION ALL SELECT '",E97,"' as SCHEMA_NAME, '",F97,"'",REPT(" ",20-LEN(F97)),$O$1,E97,".",F97)
+
 
 #### Run a macro from a Hyperlinked cell that detectc when the cell area is clicked
 
@@ -197,21 +214,32 @@ Green
 
 # Search for instances of a list of strings in cell and return a decode. Like a "case in" statement. VERY USEFUL
 
-= IF(COUNT(SEARCH({"BT","BBB"},h35)),"Landline",
- IF(COUNT(SEARCH({"O2","TELEFONICA","PLUSNET"},h35)),"Internet",
- IF(COUNT(SEARCH({"INTEREST ","CCC"},h35)),"INTEREST",
- IF(COUNT(SEARCH({"CHARGE","CCC"},h35)),"CHARGES",
- IF(COUNT(SEARCH({"TV ","CCC"},h35)),"TV",
- IF(COUNT(SEARCH({"FT ","CCC"},h35)),"Transfer",
- "OTHER"))))))
+# here for output of dir / tree /AF command pasteed into Excel:
+=IF(COUNT(SEARCH({"--","xyz"}, b56))>0, "Directory",
+  IF(COUNT(SEARCH({".ppt","xyz"}, b56))>0, "Powerpoint",
+  IF(COUNT(SEARCH({".xls","xyz"}, b56))>0, "Excel",
+  IF(COUNT(SEARCH({".zip",".json",".tar",".dsx"}, b56))>0, "Zip / json / tar / dsx",
+  IF(COUNT(SEARCH({".doc",".pdf",".msg"}, b56))>0, "Word / pdf / .msg",
+  IF(COUNT(SEARCH({".txt",".csv"}, b56))>0, "Text / csv",
+  IF(COUNT(SEARCH({".sql","xyz"}, b56))>0, ".sql",
+  IF(COUNT(SEARCH({"    |","xyz"}, b56))>0, "Other 1",
+  "OTHER"))))))))
 
 
+=SWITCH(e41,
+"Agreement data","Relationship",
+"Party data","Customer",
+"Pricing data","Reference",
+"[OTHER]")
+  
 # To CONCATENATE a vertical range with spacers:
 1) copy this formula text "=CONCATENATE(TRANSPOSE(B218:B222)&" OR ") " into the one below it
 2) Select the .. Portion in CONCAT(..) and press F9. which replaces the TRANSPOSE with its result
 3)  Now remove curly brackets - voila!
 http://chandoo.org/wp/2014/01/13/combine-text-values-quick-tip/
 
+
+####
 
 Outlook Customizations (olkexplorer).exportedUI
 
@@ -220,4 +248,224 @@ Outlook Customizations (olkexplorer).exportedUI
 Excel Customizations2.exportedUI
 
 <mso:cmd app="Excel" dt="1" /><mso:customUI xmlns:mso="http://schemas.microsoft.com/office/2009/07/customui"><mso:ribbon><mso:qat><mso:sharedControls><mso:control idQ="mso:FileNewDefault" visible="false" insertBeforeQ="mso:AutoSaveSwitch"/><mso:control idQ="mso:FileOpenUsingBackstage" visible="false" insertBeforeQ="mso:AutoSaveSwitch"/><mso:control idQ="mso:FileSave" visible="false" insertBeforeQ="mso:AutoSaveSwitch"/><mso:control idQ="mso:FileSendAsAttachment" visible="false" insertBeforeQ="mso:AutoSaveSwitch"/><mso:control idQ="mso:FilePrintQuick" visible="false" insertBeforeQ="mso:AutoSaveSwitch"/><mso:control idQ="mso:PrintPreviewAndPrint" visible="false" insertBeforeQ="mso:AutoSaveSwitch"/><mso:control idQ="mso:Spelling" visible="false" insertBeforeQ="mso:AutoSaveSwitch"/><mso:control idQ="mso:Undo" visible="false" insertBeforeQ="mso:AutoSaveSwitch"/><mso:control idQ="mso:Redo" visible="false" insertBeforeQ="mso:AutoSaveSwitch"/><mso:control idQ="mso:SortAscendingExcel" visible="false" insertBeforeQ="mso:AutoSaveSwitch"/><mso:control idQ="mso:SortDescendingExcel" visible="false" insertBeforeQ="mso:AutoSaveSwitch"/><mso:control idQ="mso:PointerModeOptions" visible="false" insertBeforeQ="mso:AutoSaveSwitch"/><mso:control idQ="mso:ColumnWidthAutoFit" visible="true" insertBeforeQ="mso:AutoSaveSwitch"/><mso:control idQ="mso:RowHeightAutoFit" visible="true" insertBeforeQ="mso:AutoSaveSwitch"/><mso:control idQ="mso:WrapText" visible="true" insertBeforeQ="mso:AutoSaveSwitch"/><mso:control idQ="mso:ViewFreezePanesGallery" visible="true" insertBeforeQ="mso:AutoSaveSwitch"/><mso:control idQ="mso:Filter" visible="true" insertBeforeQ="mso:AutoSaveSwitch"/><mso:control idQ="mso:SortClear" visible="true" insertBeforeQ="mso:AutoSaveSwitch"/><mso:control idQ="mso:ConditionalFormattingMenu" visible="true" insertBeforeQ="mso:AutoSaveSwitch"/><mso:control idQ="mso:DataValidation" visible="true" insertBeforeQ="mso:AutoSaveSwitch"/><mso:control idQ="mso:MinimizeRibbon" visible="true" insertBeforeQ="mso:AutoSaveSwitch"/><mso:control idQ="mso:BordersAll" visible="true" insertBeforeQ="mso:AutoSaveSwitch"/><mso:control idQ="mso:BorderThickOutside" visible="true" insertBeforeQ="mso:AutoSaveSwitch"/><mso:control idQ="mso:SortFilterMenu" visible="true" insertBeforeQ="mso:AutoSaveSwitch"/><mso:control idQ="mso:FontSizeDecrease" visible="true" insertBeforeQ="mso:AutoSaveSwitch"/><mso:control idQ="mso:FontSizeIncrease" visible="true" insertBeforeQ="mso:AutoSaveSwitch"/><mso:control idQ="mso:RowHeight" visible="true" insertBeforeQ="mso:AutoSaveSwitch"/><mso:control idQ="mso:DecimalsDecrease" visible="true" insertBeforeQ="mso:AutoSaveSwitch"/><mso:control idQ="mso:Strikethrough" visible="true" insertBeforeQ="mso:AutoSaveSwitch"/><mso:control idQ="mso:RemoveDuplicates" visible="true" insertBeforeQ="mso:AutoSaveSwitch"/><mso:control idQ="mso:ReviewNewComment" visible="true" insertBeforeQ="mso:AutoSaveSwitch"/><mso:control idQ="mso:PivotTableChangeDataSource" visible="true" insertBeforeQ="mso:AutoSaveSwitch"/><mso:control idQ="mso:AutoSaveSwitch" visible="true"/></mso:sharedControls></mso:qat><mso:tabs><mso:tab idQ="mso:TabDrawInk" visible="false"/></mso:tabs></mso:ribbon></mso:customUI>
+
+
+
+
+#### --------------------------------------- recent macros
+
+'DQ Rule Generator 
+
+Sub DQRuleGenerator()
+Dim lRow As Long
+Dim RepeatFactor As Variant, ColourNum, ColourNumNext, ColourLastNext
+Dim Message As String, RepeatFactorCol As String, FirstCol As String, LastCol As String, SeqCol As String
+'
+lRow = 3             '# First row of data ie below header and other info
+SeqCol = "Z"          '# Where to put the "Rule seq no."
+RepeatFactorCol = "AB" '# The rule count column ie no of times to duplicate the rule row
+FirstCol = "A"         '# First column of data to duplicate down - usually A / sometimes B
+LastCol = "BM"         '# Last column of data to duplicate down
+'
+ColourNum = 2
+ColourNumNext = 19
+'Colours : White / Light blue / yellow / orange : 2 / 34 / 19 / 40
+Do While (Cells(lRow, FirstCol) <> "" And lRow < 200)
+    RepeatFactor = Cells(lRow, RepeatFactorCol)
+    'RepeatFactor = 2
+    If ((RepeatFactor > 1) And IsNumeric(RepeatFactor)) Then
+        Range(Cells(lRow, FirstCol), Cells(lRow, LastCol)).Copy
+        Range(Cells(lRow + 1, FirstCol), Cells(lRow + RepeatFactor - 1, LastCol)).Select
+        Selection.Insert Shift:=xlDown
+      For j = 0 To RepeatFactor - 1 Step 1
+'         MsgBox ( " lRow: " + CStr(lRow) + " j: " + CStr(j) )
+          Cells(lRow + j, SeqCol).Value = j + 1
+      Next
+        'Cells(lRow + 1, SeqCol).Value = lRow
+        lRow = lRow + RepeatFactor - 1
+      End If
+        '# Alternating block colours
+           ColourNumLast = ColourNum
+           ColourNum = ColourNumNext
+           ColourNumNext = ColourNumLast
+           Range(Cells(lRow - RepeatFactor + 1, FirstCol), Cells(lRow, LastCol)).Select
+        With Selection
+          .Interior.ColorIndex = ColourNum
+          '.Interior.Pattern = xlSolid
+            .Borders.LineStyle = xlDot
+            .Borders.Weight = xlThin
+            .BorderAround LineStyle:=xlContinuous, Weight:=xlMedium
+       End With
+    lRow = lRow + 1
+Loop
+End Sub
+
+
+Private Sub Worksheet_FollowHyperlink(ByVal Target As Hyperlink)
+'### create a linked cell to run the DQRuleGenerator macro above
+    'Check if the Target Address is same as you have given
+    'In the above example i have taken D1 Cell, so I am
+         
+    If Target.Range.Address = "$D$1" Then
+        'Write your all VBA Code, which you want to execute
+        'Or Call the function or Macro which you have
+        'written or recorded.
+     Select Case MsgBox("Rule rows will now be generated. Make sure to save before running. Then if not happy with results close without saving and re-open unsaved version!", vbOKCancel, "Confirm if you want generator macro to run?")
+    Case vbOK
+       ' MsgBox "Your Code here to be executed"
+       Call DQRuleGenerator
+    Case vbCancel
+        MsgBox "Macro not run."
+      End Select
+        Exit Sub
+    End If
+End Sub
+    
+Private Sub ReportSave()
+'### save the DQRuleGenerator to a named file with mutliple sheets? WIP and never really used - TBD.
+
+    Filename = "_ComparisonResult_" & Format(Now, "ddmmmyy") & "_" & Format(Now, "hhmm") & ".xlsx"
+
+    Dim DstFile As String 'Destination File Name
+
+    'Copy worksheet
+    Application.ScreenUpdating = False
+    Dim wb As Workbook
+
+    'Sheets(Array("Reference", "Actual", "InRef_NotInAct", "InAct_NotInRef", "Summary", "Key")).Select
+    Sheets(Array("Files", "Reference", "Actual", "InRef_NotInAct", "InAct_NotInRef", "Summary", "Key")).Copy
+
+    Set wb = ActiveWorkbook
+
+    'Prompt for SaveAs name
+    DstFile = Application.GetSaveAsFilename _
+    (InitialFileName:=Filename, _
+    Title:="Save As")
+
+    If DstFile = "False" Then
+        MsgBox "File not Saved, Actions Cancelled."
+        Exit Sub
+        Else
+        wb.SaveAs DstFile 'Save file
+        'wb.Close 'Close file
+    End If
+
+    MsgBox ("File Saved")
+    Application.ScreenUpdating = True
+
+End Sub
+
+
+'################################################
+
+Sub CombineCSV()
+' Combines mutliple csv file from a dir into one file with many named and formatted sheets
+
+Dim SavePath As String
+Dim SaveFile As String
+
+Dim WorkbookCurrent As Workbook
+Dim WorkbookDest As Workbook
+
+
+SavePath = "T:\Oracle\FEC - sample data\"
+Set WorkbookDest = Excel.Application.Workbooks.Add
+' Set WorkbookDest = ThisWorkbook
+Application.ScreenUpdating = False
+SaveFile = Dir$(SavePath & "*.csv", vbArchive)
+
+Do While SaveFile <> ""
+      Set WorkbookCurrent = Application.Workbooks.Open(SavePath & SaveFile)
+  With WorkbookCurrent
+      .Sheets(1).Select
+'      .Sheets(1).Range("A1").EntireRow.Delete
+      .Sheets(1).Range("A1").EntireRow.Font.Bold = True
+
+      .Sheets(1).Range(Selection, Selection.End(xlDown)).Select
+      .Sheets(1).Range(Selection, Selection.End(xlToRight)).Select
+       Selection.Columns.AutoFit
+
+       Rows("1:1").Select
+       Selection.AutoFilter
+        
+       Selection.Insert Shift:=xlDown, CopyOrigin:=xlFormatFromLeftOrAbove
+           Selection.WrapText = True
+          With Selection.Font
+            .name = "Calibri"
+            .Size = 10
+            .Bold = True
+            .ThemeColor = xlThemeColorAccent1
+            .TintAndShade = -0.499984740745262
+        End With
+        Selection.Insert Shift:=xlDown, CopyOrigin:=xlFormatFromLeftOrAbove
+
+       Rows("4").Select
+       ActiveWindow.FreezePanes = True
+
+'     .Sheets(1).Name = Mid(.Name, 1, Len(.Name) - 4)
+      .Sheets(1).Range("A1").Select
+      .Sheets(1).Copy After:=WorkbookDest.Sheets(WorkbookDest.Sheets.Count)
+      .Saved = True
+      .Close
+  End With
+  SaveFile = Dir$()
+Loop
+
+    Sheets("Sheet1").Select
+    ActiveWindow.SelectedSheets.Delete
+
+' ActiveWorkbook.SaveAs Filename:= _
+                   "T:\Oracle\FEC - sample data\combined.xlsx" _
+        , FileFormat:=xlNormal, Password:="", WriteResPassword:="", ReadOnlyRecommended:=False, CreateBackup:=False
+
+' ActiveWorkbook.Close
+
+Application.ScreenUpdating = True
+End Sub
+
+' List all the sheet names of the current open workbook. Listed in a new workbook that you can just close without saving once results are copied.
+Sub ListSheetNamesInNewWorkbook()
+    Dim objNewWorkbook As Workbook
+    Dim objNewWorksheet As Worksheet
+    Dim objCountWorkbook As Workbook
+    
+    Set objCountWorkbook = ActiveWorkbook
+    Set objNewWorkbook = Excel.Application.Workbooks.Add
+    Set objNewWorksheet = objNewWorkbook.Sheets(1)
+    
+    For i = 1 To objCountWorkbook.Sheets.Count
+        objNewWorksheet.Cells(i, 1) = i
+        objNewWorksheet.Cells(i, 2) = objCountWorkbook.Sheets(i).name
+    Next i
+    With objNewWorksheet
+         .Rows(1).Insert
+         .Cells(1, 1) = "Sheet number"
+         .Cells(1, 1).Font.Bold = True
+         .Cells(1, 2) = "Sheet Name"
+         .Cells(1, 2).Font.Bold = True
+         .Columns("A:B").AutoFit
+    End With
+End Sub
+
+
+
+Public Function GetColumnLetter(colNum As Integer) As String
+' for eg. This would be called in a cell with: =Personal.xlsb!GetColumnLetter(2)
+' https://stackoverflow.com/questions/31815205/use-personal-xlsb-function-in-new-workbook
+'https://www.myonlinetraininghub.com/creating-a-reference-to-personal-xlsb-for-user-defined-functions-udfs
+' https://www.ablebits.com/office-addins-blog/2020/03/04/excel-personal-macro-workbook/
+
+    Dim d As Integer
+    Dim m As Integer
+    Dim name As String
+    d = colNum
+    name = ""
+    Do While (d > 0)
+        m = (d - 1) Mod 26
+        name = Chr(65 + m) + name
+        d = Int((d - m) / 26)
+    Loop
+    GetColumnLetter = name
+End Function
+
 
