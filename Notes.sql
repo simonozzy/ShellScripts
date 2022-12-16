@@ -43,6 +43,20 @@ type *.txt | Measure-Object -line
 --If you want to count all words in all text files in a directory:
 Get-ChildItem <INPUT_FOLDER_PATH> -Recurse -Filter *.txt | Get-Content | measure -Word -Line - Character
 
+-- #### tech / app notes
+
+-- EXCEL: 
+column grouping: select column A, and then hold Shift + Alt + Right arrow 
+
+-- KQL for Teams / SP / Outlook / WinExp searching: 
+sent: 2021-09-14..2021-09-15
+-- eg.: to build a KQL query in Query Builder from Search Result Sources under Site Collection Administration. The output of the results must be only office related files (Doc, Docx, PPT, PPTX, XLS, XLSX) OR PDF OR MP4 Or Folders.
+ {SearchBoxQuery} ((FileExtension:mp4 OR FileExtension:doc OR FileExtension:docx OR FileExtension:xls OR FileExtension:xlsx OR FileExtension:ppt OR FileExtension:pptx OR FileExtension:pdf) AND (IsDocument:"True" OR contentclass:"STS_ListItem")) OR ContentType="Folder"   
+ 
+-- Outlook shortcuts
+Add a bulleted list - select and then Ctrl+Shift+L
+Or Type * (asterisk) to start a bulleted list or 1. to start a numbered list, and then press Spacebar.
+
 -- ### Shell bits - DS and Hive / beeline
 
 DS_JOB_LIST="
@@ -163,3 +177,5 @@ Whole row must not contain any numbers :
 ^([^\uFFF0-\uFFFF\u0000-\u001f\uFFFD]*)$
 
 tested here https://regexr.com/6nnq2
+
+
